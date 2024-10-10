@@ -1,4 +1,8 @@
 ## Hi there 👋
+# I am MinKi Choi 
+* * *
+### OSS
+:lock: + :key: = :unlock:
 
 <!--
 **Mean-Key/Mean-Key** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
