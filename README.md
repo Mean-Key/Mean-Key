@@ -1,8 +1,9 @@
-## Hi there 👋
+## Open Source Software Tearm Project
 # I am MinKi Choi 
 * * *
 ### OSS
 :lock: + :key: = :unlock:
+힘을 주는 문구
 
 <!--
 **Mean-Key/Mean-Key** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
