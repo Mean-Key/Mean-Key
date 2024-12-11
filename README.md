@@ -21,6 +21,8 @@
 어렸을적 500원들고 문방구에서 카드를 사던 기억 <br>
 사용자의 경험을 극대화하고 포켓몬이라는 친숙한 주제를 통해 수집의 재미를 제공하기 위해 개발되었습니다. 
 
+![moveball](https://github.com/user-attachments/assets/c5efedb6-d6c7-4b85-a01c-2b0b1f4cb1b4)
+
 ## 프로젝트 구조
 ```
 Project/
