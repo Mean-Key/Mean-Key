@@ -132,34 +132,36 @@ Project/
 
 ###### -일반 계정 로그인-
 
-#### 로그인 페이지
+#### 일반 계정 로그인 
 ![일반_로그인](https://github.com/user-attachments/assets/e541e634-1be2-4ca4-8e11-bd49092e387a)
 
-#### 메인 페이지
-![Main Page](img/sample_main.png)
-
-#### 카드 뽑기 페이지
+#### 일반 계정 카드 뽑기
 [![Pokedex Page](img/sample_pokedex.png))](https://github.com/user-attachments/assets/7dc804b0-3829-42fd-8298-5f7b2b1e6402)
 
-#### 포켓몬 도감 페이지
-https://github.com/user-attachments/assets/18b10782-bc87-466a-b894-41ea01271271
+- 코인 5개, 코인이 0개가 되면 카드 뽑기 불가
+
+#### 일반 계정 포켓몬 도감
+![일반_도감](https://github.com/user-attachments/assets/fce451e6-ed46-4049-8e46-3b5a70b6f1be)
+
+- ALL 버튼 비활성화
+
 ---
 
 ###### -관리자 로그인-
 
-#### 로그인 페이지
+#### 관리자 로그인
 ![Login Page](img/sample_login.png)
 
-#### 메인 페이지
-![Main Page](img/sample_main.png)
-
-#### 카드 뽑기 페이지
+#### 관리자 카드 뽑기
 ![개발자_카드](https://github.com/user-attachments/assets/125f4f2a-ac9b-47ad-a979-4563a152ab1e)
 
+- 코인 999개
+  
 #### 포켓몬 도감 페이지
+https://github.com/user-attachments/assets/18b10782-bc87-466a-b894-41ea01271271
+
+#### 뮤 이벤트
 https://github.com/user-attachments/assets/83bea38b-0655-4802-b5aa-9cb1ef1d10c6
-
-
 
 ---
 ## 참조
