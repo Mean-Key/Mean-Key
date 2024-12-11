@@ -139,7 +139,7 @@ Project/
 ![Main Page](img/sample_main.png)
 
 #### 카드 뽑기 페이지
-![Gamble Page](img/sample_gamble.png)
+[![Pokedex Page](img/sample_pokedex.png))](https://github.com/user-attachments/assets/7dc804b0-3829-42fd-8298-5f7b2b1e6402)
 
 #### 포켓몬 도감 페이지
 ![일반_도감](https://github.com/user-attachments/assets/fce451e6-ed46-4049-8e46-3b5a70b6f1be)
@@ -158,7 +158,8 @@ Project/
 ![개발자_카드](https://github.com/user-attachments/assets/125f4f2a-ac9b-47ad-a979-4563a152ab1e)
 
 #### 포켓몬 도감 페이지
-[![Pokedex Page](img/sample_pokedex.png))](https://github.com/user-attachments/assets/7dc804b0-3829-42fd-8298-5f7b2b1e6402)
+https://github.com/user-attachments/assets/83bea38b-0655-4802-b5aa-9cb1ef1d10c6
+https://github.com/user-attachments/assets/18b10782-bc87-466a-b894-41ea01271271
 
 
 ---
