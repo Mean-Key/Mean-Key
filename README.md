@@ -130,8 +130,6 @@ Project/
 ---
 ## 실행 화면
 
-###### -일반 계정 로그인-
-
 #### 일반 계정 로그인 
 ![일반_로그인](https://github.com/user-attachments/assets/e541e634-1be2-4ca4-8e11-bd49092e387a)
 
@@ -144,13 +142,6 @@ Project/
 ![일반_도감](https://github.com/user-attachments/assets/fce451e6-ed46-4049-8e46-3b5a70b6f1be)
 
 - ALL 버튼 비활성화
-
----
-
-###### -관리자 로그인-
-
-#### 관리자 로그인
-![Login Page](img/sample_login.png)
 
 #### 관리자 카드 뽑기
 ![개발자_카드](https://github.com/user-attachments/assets/125f4f2a-ac9b-47ad-a979-4563a152ab1e)
