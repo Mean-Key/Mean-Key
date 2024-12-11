@@ -37,13 +37,21 @@
 
 ## 프로젝트 구조
 ```
-프로젝트/
+Project/
 ├── img
 │   ├── symbol
 │   │   ├── RED.png
+│   │   └── ...
 │   ├── poke151
 │   │   ├── SV2a_001.png
 │   │   ├── SV2a_002.png
+│   │   └── ...
+|   ├── etc
+│   │   ├── cardpack.png
+│   │   ├── pokeball.png
+│   │   └── ...
+├── music
+│   ├── main.mp3
 │   │   └── ...
 ├── main.html
 ├── pokedex.html
