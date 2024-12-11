@@ -130,7 +130,7 @@ Project/
 
 - 뮤를 획득하면 전체 카드가 총 `151`장으로 변경
 
-![Mew](https://github.com/user-attachments/assets/b65841a0-ca60-4f33-8578-3c144c9272b3)
+<img src="https://github.com/user-attachments/assets/b65841a0-ca60-4f33-8578-3c144c9272b3" width="500" />
 
 
 </details>
