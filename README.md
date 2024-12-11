@@ -73,7 +73,7 @@ Project/
 - 포켓몬 150종의 데이터를 기반으로 한 카드 형태의 UI.
 - 검색 및 필터링 기능으로 원하는 포켓몬을 쉽게 탐색.
 - 획득한 카드는 `미보유 -> 보유` 상태 변경.
-<img src="https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5" width="600" height="400">
 
 ---
 ## 주요 구현 기능
