@@ -166,6 +166,4 @@ https://github.com/user-attachments/assets/83bea38b-0655-4802-b5aa-9cb1ef1d10c6
 ## 참조
 https://poke-holo.simey.me/ - 3D 회전 아이디어 참조<br>
 
-<br>   
-
 ![footer](https://capsule-render.vercel.app/api?section=footer&type=waving&color=6DD5FA)
