@@ -75,6 +75,8 @@ Project/
 - 획득한 카드는 `미보유 -> 보유` 상태 변경.
   
 ![link](https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5)
+<img src="(https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5)" width="200" height="100">
+
 ---
 ## 주요 구현 기능
 <br>
