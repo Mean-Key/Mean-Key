@@ -106,13 +106,16 @@ Project/
 <br>
 
 <details><summary> :egg: :egg: :egg:</summary>
-4. **뮤 이벤트**
-- 초기상태에선 150마리의 포켓몬 카드만 볼 수 있음
+<br>
+
+**Easter Egg - 뮤 이벤트**
+
+- 초기상태에선 150마리의 포켓몬 카드만 보임
+
 - 150장의 포켓몬 카드를 모두 모으면 이벤트 발생
-- 뮤를 획득하면 전체 카드 `151`장으로 변경  
+
+- 뮤를 획득하면 전체 카드가 총 `151`장으로 변경
 </details>
-
-
 
 ## 기술 스택
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=&logo=html5&logoColor=white) : UI 레이아웃 및 구조 작성.
@@ -150,6 +153,10 @@ Project/
 
 ## 참조
 https://poke-holo.simey.me/ - 3D 회전 아이디어 참조<br>
+
+<br>   
+
+![footer](https://capsule-render.vercel.app/api?section=footer&type=waving&color=6DD5FA)
 
 <br>   
 
