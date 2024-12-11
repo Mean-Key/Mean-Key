@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 도감</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pokedex-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .pokedex-header-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+	
+        }
+        .pokedex-header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .pokedex-header-button {
+            padding: 10px 20px;
+            font-size: 14px;
+            text-decoration: none;
+            border: 2px solid #000;
+            border-radius: 8px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .pokedex-header-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .pokedex-search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .pokedex-search-input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        .pokedex-card-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            width: 80%;
+            margin: 20px 0;
+        }
+    
+    .pokedex-card {
+    width: 220px;
+    height: 310px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #f5f5f5;
+    transition: transform 0.3s ease;
+}
+.pokedex-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.pokedex-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(105deg,
+        transparent 40%,
+        rgba(255, 219, 112, 0.8) 45%,
+        rgba(132, 50, 255, 0.6) 50%,
+        transparent 54%);
+    filter: brightness(1.1) opacity(0.8);
+    mix-blend-mode: color-dodge;
+    background-size: 150% 150%;
+    background-position: 100%;
+    transition: all 0.1s;
+}
+.pokedex-card button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #f5f5f5;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 5px 10px;
+        transition: background-color 0.3s, color 0.3s;
+        z-index: 10;
+    }
+    .pokedex-card button.owned {
+        background-color: #4caf50; /* 녹색: 보유중 */
+        color: white;
+        border-color: #4caf50;
+    }
+    .pokedex-card button:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    .pokedex-card-image {
+    width: 100%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 30;
+}
+.pokedex-card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pokedex-card-image img:hover {
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.pokedex-card-info {
+    height: 20%;
+    background-color: #f8f8f8;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+.pokedex-card-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.pokedex-card-info button {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+.pokedex-card-info button.owned {
+    background-color: #4caf50;
+    color: #fff;
+    border-color: #4caf50;
+}
+
+.pokedex-card-info button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+        .pokedex-card img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 80%;
+            max-height: 80%;
+	cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+    /* 확대된 이미지 스타일 */
+    .zoomed-image-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8); /* 배경 어두움 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    .zoomed-image {
+        max-width: 50%;
+        max-height: 50%;
+        animation: zoomInRotate 0.5s ease-in-out forwards;
+    }
+    @keyframes zoomInRotate {
+        from {
+            transform: scale(0.5) rotate(0deg);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1.5) rotate(360deg);
+            opacity: 1;
+        }
+    }
+    .zoomed-image-container-close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+        .pokedex-card-status {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    .pokedex-filter-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .pokedex-filter-button {
+        width: 40px;
+        height: 40px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+    .pokedex-filter-button:hover {
+        transform: scale(1.2);
+    }
+    .pokedex-filter-button.active {
+        transform: scale(1.5); /* 클릭된 버튼 확대 */
+        border-color: rgba(0, 0, 0, 0.5); /* 클릭된 버튼 강조 */
+    }
+    .pokedex-acquire-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .all-acquire-button {
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-status-board {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: white;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 10px 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        font-size: 16px;
+    }
+
+    .status-board-text {
+        margin: 0;
+        font-weight: bold;
+    }
+    .pack-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pack-image:hover {
+        transform: scale(1.1); /* 이미지를 확대 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
+    }
+    .pokedex-music-control {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+        .pokedex-music-control:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 헤더 -->
+    <div class="pokedex-header">
+        <div class="pokedex-header-title">카드 도감</div>
+        <p id="pokedex-user-info" style="border: grey solid 2px; border-radius: 10px; padding: 3px;" ></p>
+        <div class="pokedex-header-buttons">
+            <a href="main.html" class="pokedex-header-button">메인</a>
+            <a href="gamble.html" class="pokedex-header-button">카드 뽑기</a>
+        </div>
+    </div>
+
+    <!-- 검색창 -->
+    <div class="pokedex-search-container">
+        <input type="text" id="pokedex-search-input" class="pokedex-search-input" placeholder="이름이나 번호로 검색">
+    </div>
+<!-- 필터 버튼 -->
+<div class="pokedex-filter-buttons">
+    <img src="img/symbol/GREEN.png" alt="풀" class="pokedex-filter-button" data-type="green">
+    <img src="img/symbol/RED.png" alt="불" class="pokedex-filter-button" data-type="red">
+    <img src="img/symbol/BLUE.png" alt="물" class="pokedex-filter-button" data-type="blue">
+    <img src="img/symbol/YELLOW.png" alt="뇌" class="pokedex-filter-button" data-type="yellow">
+    <img src="img/symbol/BROWN.png" alt="격" class="pokedex-filter-button" data-type="brown">
+    <img src="img/symbol/PINK.png" alt="초" class="pokedex-filter-button" data-type="pink">
+    <img src="img/symbol/BLACK.png" alt="악" class="pokedex-filter-button" data-type="black">
+    <img src="img/symbol/GOLD.png" alt="용" class="pokedex-filter-button" data-type="gold">
+    <img src="img/symbol/WHITE.png" alt="무" class="pokedex-filter-button" data-type="white">
+<div class="pokedex-acquire-container">
+    <img src="img/symbol/all.png" alt="ALL" id="all-acquire-button" class="all-acquire-button" style="width: 40px; height: 40px;"></div>
+</div>
+    </div>
+    <!-- 카드 컨테이너 -->
+    <div class="pokedex-card-container" id="pokedex-card-container">
+        <!-- 동적으로 카드가 추가됩니다 -->
+    </div>
+
+        <!-- 클릭한 카드 내용이 동적으로 추가됩니다 -->
+    </div>
+<div id="card-status-board" style="position: fixed; top: 300px; right: 10px; background: white; border: 2px solid #ccc;
+    border-radius: 8px; padding: 10px 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; font-size: 16px;">
+    <p id="status-board-text">보유: 0 / 150</p>
+</div>
+</div>
+<div id="pack-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 1000; text-align: center;">
+    <img id="pack-image" src="img/etc/151pack.png" alt="151 Pack" style="cursor: pointer; max-width: 300px;">
+</div>
+<!-- 음악 제어 버튼 -->
+<div class="pokedex-music-control" onclick="toggleMusic()">
+    🎵 재생
+</div>
+
+<!-- 음악 파일 추가 -->
+<audio id="pokedex-background-music" loop>
+    <source src="music/pokedex.mp3" type="audio/mpeg">
+</audio>
+    <!-- JavaScript 파일 -->
+    <script src="151data.js"></script>
+    <script>
+    
+window.onload = function () {
+    const user = JSON.parse(localStorage.getItem('loggedInUser')); // 로그인된 사용자 정보 가져오기
+    const userInfo = document.getElementById('pokedex-user-info');
+    const allAcquireButton = document.getElementById('all-acquire-button');  // "모두획득" 버튼 가져오기
+
+    if (user && user.username) {
+        // 로그인된 사용자의 정보를 표시
+        userInfo.textContent = user.role === 'developer'
+            ? `개발자님 어서오세요, ${user.username}!`
+            : `어서오세요, ${user.username}!`;
+
+        // 관리자인 경우 "모두획득" 버튼 표시
+        if (user.role === 'developer') {
+            allAcquireButton.style.display = 'inline-block';  // 버튼 표시
+        } else {
+            allAcquireButton.style.display = 'none';  // 관리자가 아니면 버튼 숨기기
+        }
+    } else {
+        alert('로그인이 필요합니다.');
+        window.location.href = 'login.html';
+    }
+
+    initializePokedex();
+};
+        const cardData = POKEDEX;
+
+        // 검색창 이벤트 리스너
+        document.getElementById('pokedex-search-input').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const filteredData = cardData.filter(card =>
+                card.NAME.toLowerCase().includes(searchTerm) || 
+                card.NUMBER.toString().includes(searchTerm)
+            );
+            displayCards(filteredData);
+        });
+
+// 보유 상태를 저장할 객체
+const ownedCards = {};  
+// "모두획득" 버튼 클릭 이벤트 추가
+let allAcquired = false; // 모두획득 상태 추적
+
+// "모두획득" 버튼 클릭 이벤트
+document.getElementById('all-acquire-button').addEventListener('click', function () {
+    if (!allAcquired) {
+        // 151번 카드를 제외한 모든 카드를 보유 상태로 설정
+        cardData.forEach(card => {
+            if (card.NUMBER !== 151) {
+                ownedCards[card.NUMBER] = true;
+            }
+        });
+        alert('모든 카드를 보유 상태로 변경했습니다!');
+    } else {
+        // 모든 카드를 미보유 상태로 설정 (151번 제외)
+        cardData.forEach(card => {
+            if (card.NUMBER !== 151) {
+                delete ownedCards[card.NUMBER];
+            }
+        });
+        alert('모든 카드를 미보유 상태로 변경했습니다!');
+    }
+
+    // 상태 반전
+    allAcquired = !allAcquired;
+
+    // 도감 다시 렌더링
+    displayCards(cardData);
+    updateStatusBoard();
+
+    // 151번 카드 이벤트 확인 (보유 카드 수가 150개이면 즉시 트리거)
+    checkAllOwned();
+});
+
+// 150개 보유 확인 함수
+function checkAllOwned() {
+    if (Object.keys(ownedCards).length === 150) {
+        trigger151PackEvent();
+    }
+}
+
+// 151번 카드 이벤트 발생
+function trigger151PackEvent() {
+    const packContainer = document.getElementById('pack-container');
+    const packImage = document.getElementById('pack-image');
+
+    // 알림 먼저 표시
+    alert('🎉 모든 포켓몬을 획득하셨습니다! 🎉\n 어디선가 뮤가 나타났습니다!');
+
+    // 알림이 닫힌 후에 팩 이미지 표시
+    setTimeout(() => {
+        packContainer.style.display = 'block'; // 팩 이미지 표시
+    }, 1000); // 알림이 닫힌 후 1초 후에 실행
+
+    // 팩 이미지에 hover 이벤트 추가
+packImage.addEventListener('mouseenter', function() {
+    // 이미지 변경: 151openpack.png로 바꾸기
+    packImage.src = 'img/etc/151openpack.png'; // hover 시 open 이미지로 변경
+    packImage.style.transform = 'scale(1.2)'; // 이미지 크기 확대
+
+    
+    setTimeout(() => {
+        packImage.src = 'img/poke151/SV2a_151.png'; // 계속 hover 시 SV2a_151.png로 변경
+    }, 1000); // 0.2초 후 이미지 변경
+});
+
+packImage.addEventListener('click', () => {
+        const card151 = cardData.find(card => card.NUMBER === 151);
+        if (card151) {
+            ownedCards[151] = true; // 151번 카드 보유 설정
+            alert('🎉 축하합니다! 뮤를 획득 하셨습니다! 🎉');
+            packContainer.style.display = 'none'; // 팩 숨기기
+            displayCards(cardData); // 도감 다시 렌더링
+        }
+    });
+}
+
+// 개별 카드 보유 상태 토글
+function toggleOwnership(card, button) {
+    if (ownedCards[card.NUMBER]) {
+        delete ownedCards[card.NUMBER];
+        button.textContent = '미보유';
+        button.classList.remove('owned');
+    } else {
+        ownedCards[card.NUMBER] = true;
+        button.textContent = '보유중';
+        button.classList.add('owned');
+    }
+
+    // 151번 카드 이벤트 확인
+    checkAllOwned();
+
+    // 상태 업데이트
+    updateStatusBoard();
+}
+function addHoverEffect(cardElement) {
+    const overlay = document.createElement('div');
+    overlay.className = 'pokedex-overlay';
+    cardElement.appendChild(overlay);
+
+    cardElement.addEventListener('mousemove', (e) => {
+        const rect = cardElement.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateY = (-1 / 5) * x + 20;
+        const rotateX = (4 / 30) * y - 20;
+
+        overlay.style = `background-position: ${x / 5 + y / 5}%; filter: opacity(${x / 200}) brightness(1.2)`;
+        cardElement.style = `transform: perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    cardElement.addEventListener('mouseout', () => {
+        overlay.style = 'filter: opacity(0)';
+        cardElement.style = 'transform: perspective(350px) rotateY(0deg) rotateX(0deg)';
+    });
+}
+    
+
+// 필터 버튼 이벤트 리스너 추가
+document.querySelectorAll('.pokedex-filter-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const isActive = this.classList.contains('active'); // 현재 버튼이 활성 상태인지 확인
+
+        // 모든 버튼의 'active' 클래스 제거
+        document.querySelectorAll('.pokedex-filter-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        if (isActive) {
+            // 이미 활성화된 버튼을 클릭하면 전체 데이터 표시
+            displayCards(cardData);
+        } else {
+            // 클릭된 버튼에 'active' 클래스 추가
+            this.classList.add('active');
+
+            // 필터 동작
+            const type = this.dataset.type; // 버튼의 data-type 속성 값 가져오기
+            const filteredData = cardData.filter(card => card.TYPE === type);
+            displayCards(filteredData);
+        }
+    });
+});
+
+
+// 도감 카드 표시 함수
+function displayCards(data) {
+    const cardContainer = document.getElementById('pokedex-card-container');
+    cardContainer.innerHTML = ''; // 기존 카드 초기화
+
+    data.forEach(card => {
+
+        if (card.NUMBER === 151 && !ownedCards[151]) {
+            return; // 151번 카드를 보유하지 않은 경우 스킵
+        }
+
+        const isOwned = !!ownedCards[card.NUMBER]; // 카드 보유 상태 확인
+
+        const cardElement = document.createElement('div');
+        cardElement.className = 'pokedex-card';
+
+        cardElement.innerHTML = `
+            <div class="pokedex-card-image">
+                <img src="${card.FILE}" alt="${card.NAME}">
+            </div>
+            <div class="pokedex-card-info">
+                <p class="pokedex-card-name">${card.NUMBER}. ${card.NAME}</p>
+                <button class="${isOwned ? 'owned' : ''}">
+                    ${isOwned ? '보유중' : '미보유'}
+                </button>
+            </div>
+        `;
+
+        // 개별 카드 상태 변경 이벤트 추가
+        const button = cardElement.querySelector('button');
+        button.addEventListener('click', () => toggleOwnership(card, button));
+
+	// 카드에 마우스 효과 추가
+        addHoverEffect(cardElement);
+        cardContainer.appendChild(cardElement);
+    });
+
+
+    updateStatusBoard(); // 보유 현황 업데이트
+}
+// 보유 현황 업데이트 함수
+function updateStatusBoard() {
+    const statusBoardText = document.getElementById('status-board-text');
+    const totalOwned = Object.keys(ownedCards).length;
+
+    // 151번 카드를 제외하고 150장만 보유한 경우
+    if (totalOwned === 151) {
+        statusBoardText.textContent = `보유: ${totalOwned} / 151`;  // 150 / 150으로 유지
+    } else {
+        statusBoardText.textContent = `보유: ${totalOwned} / 150`;  // 151 / 151로 업데이트
+    }
+}
+// 초기 데이터 표시
+displayCards(cardData);
+
+function initializeImageClickEffect() {
+    const cardContainer = document.getElementById('pokedex-card-container'); // 부모 컨테이너 선택
+
+    cardContainer.addEventListener('click', function (event) {
+        const clickedImage = event.target.closest('.pokedex-card-image img');
+        if (clickedImage) {
+            handleImageClick(clickedImage);
+        }
+    });
+}
+
+function handleImageClick(imageElement) {
+    const existingContainer = document.querySelector('.zoomed-image-container');
+    if (existingContainer) {
+        // 확대된 이미지가 이미 표시된 상태라면 제거
+        existingContainer.remove();
+        return;
+    }
+
+    const imageSrc = imageElement.src;
+
+    // 확대된 이미지 컨테이너 생성
+    const container = document.createElement('div');
+    container.className = 'zoomed-image-container';
+
+    // 확대된 이미지를 감싸는 카드 스타일의 요소 생성
+    const zoomedElement = document.createElement('div');
+    zoomedElement.className = 'zoomed-image-wrapper';
+    zoomedElement.innerHTML = `
+        <div class="zoomed-image-content">
+            <img src="${imageSrc}" alt="Zoomed Image">
+        </div>
+    `;
+
+    // 확대된 이미지에 hover 효과 추가
+    addZoomHoverEffect(zoomedElement);
+
+    // 확대된 요소를 컨테이너에 추가
+    container.appendChild(zoomedElement);
+
+    // 클릭하면 원래 상태로 복원
+    container.addEventListener('click', () => container.remove());
+
+    // 컨테이너를 body에 추가
+    document.body.appendChild(container);
+}
+
+function addZoomHoverEffect(element) {
+    element.addEventListener('mousemove', (e) => {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateY = (-1 / 8) * x + 10; // 확대된 이미지에 맞춘 회전 범위
+        const rotateX = (1 / 15) * y - 10;
+
+        element.style = `transform: perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.2);`;
+    });
+
+    element.addEventListener('mouseout', () => {
+        element.style = 'transform: perspective(500px) rotateY(0deg) rotateX(0deg) scale(1);';
+    });
+}
+
+// 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    initializeImageClickEffect();
+});
+
+let musicPlaying = false;
+        const audioElement = document.getElementById('pokedex-background-music');
+        const musicControl = document.querySelector('.pokedex-music-control');
+
+audioElement.play();
+            musicPlaying = true;
+            musicControl.textContent = '🎵 재생'; // 버튼 텍스트 변경
+    
+
+    // 음악 재생/정지 토글 함수
+    function toggleMusic() {
+            if (musicPlaying) {
+                audioElement.pause();
+                musicControl.textContent = '🎵 재생'; // 버튼 텍스트 변경
+            } else {
+                audioElement.play();
+                musicControl.textContent = '🎵 정지'; // 버튼 텍스트 변경
+            }
+            musicPlaying = !musicPlaying;
+        }
+    </script>
+</body>
+</html>
+
+

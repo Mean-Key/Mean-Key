@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 뽑기</title>
+    <style>
+        .gamble-body {
+            position: relative;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1e1e1e;
+        }
+        .gamble-card-display-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+        .gamble-cards {
+            display: flex;
+            width: 800px;
+            height: 400px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .gamble-cards .gamble-card {
+            background-color: white;
+            width: 400px;
+            height: 320px;
+            border-radius: 15px;
+            border: 2px solid #ccc;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0 -40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 0;
+            transition: transform 0.4s, z-index 0.2s;
+        }
+        .gamble-cards .gamble-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 15px 20px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1;
+        }
+        .gamble-cards .gamble-card:nth-child(1) {
+            transform: rotate(-30deg);
+        }
+        .gamble-cards .gamble-card:nth-child(1):hover {
+            transform: rotate(-30deg) translateY(-30px);
+        }
+        .gamble-cards .gamble-card:nth-child(2) { 
+            transform: rotate(-15deg) translateY(-60px);
+        }
+        .gamble-cards .gamble-card:nth-child(2):hover {
+            transform: rotate(-15deg) translateY(-90px);
+        }
+        .gamble-cards .gamble-card:nth-child(3) {
+            transform: rotate(0deg) translateY(-90px);
+        }
+        .gamble-cards .gamble-card:nth-child(3):hover {
+            transform: rotate(0deg) translateY(-120px);
+        }
+        .gamble-cards .gamble-card:nth-child(4) {
+            transform: rotate(15deg) translateY(-60px);
+        }
+        .gamble-cards .gamble-card:nth-child(4):hover {
+            transform: rotate(15deg) translateY(-90px);
+        }
+        .gamble-cards .gamble-card:nth-child(5) {
+            transform: rotate(30deg);
+        }
+        .gamble-cards .gamble-card:nth-child(5):hover {
+            transform: rotate(30deg) translateY(-30px);
+        }
+        .gamble-button-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+        .gamble-button {
+            position: relative;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #000;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
+        .gamble-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }.gamble-header {
+            position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .gamble-user-info {
+            font-size: 16px;
+            color: black;
+        }
+        .gamble-coin-counter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 223, 0, 0.9);
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .gamble-header-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        .gamble-header-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #000;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+        .gamble-header-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .pack-animation {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+.gamble-saved-numbers {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.gamble-saved-numbers h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+.gamble-coin-counter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 223, 0, 0.9);
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+.gamble-music-control {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+        .gamble-music-control:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body class="gamble-body">
+    <div class="gamble-header-buttons">
+        <a href="main.html" class="gamble-header-button">메인</a>
+        <a href="pokedex.html" class="gamble-header-button">도감</a>
+    </div>
+    <div class="gamble-header">
+        <div id="gamble-user-info" class="gamble-user-info"></div>
+    </div>
+    <div class="gamble-coin-counter">
+        코인: <span id="coin-count"></span>
+    </div>
+    <div id="pack-animation" class="pack-animation" style="background-image: url('img/etc/cardpack.png');">
+    </div>
+    <div class="gamble-card-display-area">
+        <div id="gamble-card-container" class="gamble-cards"></div>
+    </div>
+    <div class="gamble-button-area">
+        <button class="gamble-button" onclick="openPack()">카드 뽑기</button>
+    </div>
+    <div class="gamble-saved-numbers" id="saved-numbers">
+        <h3>획득 카드 번호</h3>
+        <div id="number-list">
+            X
+        </div>
+    </div>
+    <!-- 음악 제어 버튼 -->
+    <div class="gamble-music-control" onclick="toggleMusic()">
+        🎵 재생
+    </div>
+    <!-- 음악 파일 추가 -->
+    <audio id="gamble-background-music" loop>
+        <source src="music/gamble.mp3" type="audio/mpeg">
+    </audio>
+<script>
+    let musicPlaying = false;
+        const audioElement = document.getElementById('gamble-background-music');
+        const musicControl = document.querySelector('.gamble-music-control');
+
+    window.onload = function () {
+        musicControl.textContent = '🎵 재생';
+    }
+    let coins = 0; // 코인 초기값
+    window.onload = function () {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            const userInfo = document.getElementById('gamble-user-info');
+            const coinCount = document.getElementById('coin-count');
+
+            if (user && user.username) {
+                if (user.role === 'developer') {
+                    userInfo.textContent = `개발자님 어서오세요, ${user.username}!`;
+                    coins = 999; // 관리자 코인 설정
+                } else {
+                    userInfo.textContent = `어서오세요, ${user.username}!`;
+                    coins = 5; // 일반 사용자 코인 설정
+                }
+                coinCount.textContent = coins;
+            } else {
+                alert('로그인이 필요합니다.');
+                window.location.href = 'login.html';
+            }
+        };
+function openPack() {
+    if (coins <= 0) {
+        alert('코인이 부족합니다! \n코인을 충전해 주세요'); // 경고 메시지 표시
+        return;
+    }
+  coins -= 1; // 코인 감소
+    updateCoinDisplay(); // 코인 표시 업데이트
+
+        const pack = document.getElementById('pack-animation');
+        const cardContainer = document.getElementById('gamble-card-container');
+        
+        // 카드 초기화
+        cardContainer.innerHTML = '';
+
+        // 초기 상태로 복원
+        pack.style.display = "block";
+        pack.style.opacity = "1";
+        pack.style.transform = "scale(1)";
+        pack.style.backgroundImage = "url('img/etc/cardpack.png')";
+        
+        // 애니메이션: pack 이미지 변경 및 사라짐
+        setTimeout(() => {
+            pack.style.backgroundImage = "url('img/etc/opencardpack.png')";
+            pack.style.transform = "scale(1.5)";
+            setTimeout(() => {
+                pack.style.opacity = "0";
+                setTimeout(() => {
+                    pack.style.display = "none";
+                    drawCards(); // 새 카드 뽑기 실행
+                }, 1000);
+            }, 1000);
+        }, 100);
+    }
+
+function updateCoinDisplay() {
+    const coinCountElement = document.getElementById('coin-count');
+    coinCountElement.textContent = coins; // 코인 표시 업데이트
+}
+
+    function drawCards() {
+    const cardContainer = document.getElementById('gamble-card-container');
+    const numberList = document.getElementById('number-list');
+    cardContainer.innerHTML = ''; // 기존 카드 초기화
+
+    const drawnNumbers = [];
+    while (drawnNumbers.length < 5) {
+        const randomNumber = Math.floor(Math.random() * 150) + 1;
+        if (!drawnNumbers.includes(randomNumber)) {
+            drawnNumbers.push(randomNumber);
+        }
+    }
+    
+
+
+    // 카드 표시
+    drawnNumbers.forEach(number => {
+        const card = document.createElement('div');
+        card.className = 'gamble-card';
+        card.style.backgroundImage = `url('img/poke151/SV2a_${number.toString().padStart(3, '0')}.png')`;
+        cardContainer.appendChild(card);
+    });
+
+    // 번호 저장
+    numberList.innerHTML = drawnNumbers.join(', ');
+}
+function toggleMusic() {
+            if (musicPlaying) {
+                audioElement.pause();
+                musicControl.textContent = '🎵 재생'; // 버튼 텍스트 변경
+            } else {
+                audioElement.play();
+                musicControl.textContent = '🎵 정지'; // 버튼 텍스트 변경
+            }
+            musicPlaying = !musicPlaying;
+        }
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.slice(1); // "username=seoultech&role=developer"
+    const pairs = queryString.split('&');
+
+    pairs.forEach(pair => {
+        const [key, value] = pair.split('=');
+        params[key] = decodeURIComponent(value);
+    });
+
+    return params;
+}
+
+
+</script>
+</body>
+</html>
