@@ -145,10 +145,19 @@ Project/
 
 ---
 
-###### 관리자 로그인
+###### -관리자 로그인-
 
-### 데모 영상
-[![Watch the video](img/sample_video_thumbnail.png)](https://youtu.be/sample_video_link)
+#### 로그인 페이지
+![Login Page](img/sample_login.png)
+
+#### 메인 페이지
+![Main Page](img/sample_main.png)
+
+#### 도박 게임 페이지
+![Gamble Page](img/sample_gamble.png)
+
+#### 포켓몬 도감 페이지
+![Pokedex Page](img/sample_pokedex.png))
 
 
 ---
