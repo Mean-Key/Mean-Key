@@ -3,7 +3,7 @@
 * * *
 ### OSS
 :lock: + :key: = :unlock:
-힘을 주는 문구
+힘을 주는 문구 d
 
 <!--
 **Mean-Key/Mean-Key** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
