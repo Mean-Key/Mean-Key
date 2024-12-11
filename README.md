@@ -23,6 +23,8 @@
 
 ![moveball](https://github.com/user-attachments/assets/c5efedb6-d6c7-4b85-a01c-2b0b1f4cb1b4)
 
+<img src="https://github.com/user-attachments/assets/c5efedb6-d6c7-4b85-a01c-2b0b1f4cb1b4" width="600" height="400">
+
 ## 프로젝트 구조
 ```
 Project/
@@ -73,6 +75,7 @@ Project/
 - 포켓몬 150종의 데이터를 기반으로 한 카드 형태의 UI.
 - 검색 및 필터링 기능으로 원하는 포켓몬을 쉽게 탐색.
 - 획득한 카드는 `미보유 -> 보유` 상태 변경.
+  
 <img src="https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5" width="600" height="400">
 
 ---
