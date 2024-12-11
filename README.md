@@ -45,8 +45,8 @@ Project/
 ├── 151data.js
 ```
 - 파일을 구조와 동일한 형태로 저장 후 프로그램 실행 권장
----
 
+---
 ## 페이지 구성
 
 ### A. 로그인 페이지 (`login.html`)
@@ -72,6 +72,7 @@ Project/
 - 검색 및 필터링 기능으로 원하는 포켓몬을 쉽게 탐색.
 - 획득한 카드는 `미보유 -> 보유` 상태 변경.
 
+---
 ## 주요 구현 기능
 <br>
 
@@ -117,6 +118,7 @@ Project/
 - 뮤를 획득하면 전체 카드가 총 `151`장으로 변경
 </details>
 
+---
 ## 기술 스택
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=&logo=html5&logoColor=white) : UI 레이아웃 및 구조 작성.
 
@@ -125,7 +127,6 @@ Project/
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=&logo=javascript&logoColor=%23F7DF1E) : 동적 동작과 사용자 상호작용, 로그인 상태와 사용자 데이터 저장.
 
 ---
-
 ## 실행 화면
 
 ###### -일반 계정 로그인-
@@ -150,13 +151,9 @@ Project/
 [![Watch the video](img/sample_video_thumbnail.png)](https://youtu.be/sample_video_link)
 
 
-
+---
 ## 참조
 https://poke-holo.simey.me/ - 3D 회전 아이디어 참조<br>
-
-<br>   
-
-![footer](https://capsule-render.vercel.app/api?section=footer&type=waving&color=6DD5FA)
 
 <br>   
 
