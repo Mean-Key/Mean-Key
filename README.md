@@ -105,12 +105,12 @@ Project/
 
 <br>
 
-<details><summary> :egg: :egg: :egg:
+<details><summary> :egg: :egg: :egg:</summary>
 4. **뮤 이벤트**
 - 초기상태에선 150마리의 포켓몬 카드만 볼 수 있음
 - 150장의 포켓몬 카드를 모두 모으면 이벤트 발생
 - 뮤를 획득하면 전체 카드 `151`장으로 변경  
-</summary>
+</details>
 
 
 
