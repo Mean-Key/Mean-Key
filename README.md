@@ -58,7 +58,7 @@ Project/
 - 파일을 구조와 동일한 형태로 저장 후 프로그램 실행 권장
 
 ---
-## 페이지 구성  :open_file_folder:
+## 페이지 구성
 
 ### A. 로그인 페이지 (`login.html`)
 - **개발자 계정과 일반 사용자 계정 지원**:
@@ -131,7 +131,6 @@ Project/
 - 뮤를 획득하면 전체 카드가 총 `151`장으로 변경
 
 <img src="https://github.com/user-attachments/assets/b65841a0-ca60-4f33-8578-3c144c9272b3" width="50" height="50" />
-
 
 </details>
 
