@@ -71,7 +71,7 @@ Project/
 - 포켓몬 150종의 데이터를 기반으로 한 카드 형태의 UI.
 - 검색 및 필터링 기능으로 원하는 포켓몬을 쉽게 탐색.
 - 획득한 카드는 `미보유 -> 보유` 상태 변경.
-- 
+  
 ![link](https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5)
 ---
 ## 주요 구현 기능
@@ -133,16 +133,16 @@ Project/
 ###### -일반 계정 로그인-
 
 #### 로그인 페이지
-![Login Page](img/sample_login.png)
+![일반_로그인](https://github.com/user-attachments/assets/e541e634-1be2-4ca4-8e11-bd49092e387a)
 
 #### 메인 페이지
 ![Main Page](img/sample_main.png)
 
-#### 도박 게임 페이지
+#### 카드 뽑기 페이지
 ![Gamble Page](img/sample_gamble.png)
 
 #### 포켓몬 도감 페이지
-![Pokedex Page](img/sample_pokedex.png)
+![일반_도감](https://github.com/user-attachments/assets/fce451e6-ed46-4049-8e46-3b5a70b6f1be)
 
 ---
 
@@ -154,11 +154,11 @@ Project/
 #### 메인 페이지
 ![Main Page](img/sample_main.png)
 
-#### 도박 게임 페이지
-![Gamble Page](img/sample_gamble.png)
+#### 카드 뽑기 페이지
+![개발자_카드](https://github.com/user-attachments/assets/125f4f2a-ac9b-47ad-a979-4563a152ab1e)
 
 #### 포켓몬 도감 페이지
-![Pokedex Page](img/sample_pokedex.png))
+[![Pokedex Page](img/sample_pokedex.png))](https://github.com/user-attachments/assets/7dc804b0-3829-42fd-8298-5f7b2b1e6402)
 
 
 ---
