@@ -86,7 +86,7 @@ Project/
 <img src="https://github.com/user-attachments/assets/3764d9c1-f5fb-4210-b672-440aef87feb5" width="600" height="400">
 
 ---
-## 주요 구현 기능
+## 🛠 주요 구현 기능
 <br>
 
 1. **로그인 및 인증**  
