@@ -17,6 +17,7 @@
 6. [실행 화면](#실행-화면)      
 7. [참조](#참조)    
 
+---
 ## 개발 목적
 어린 시절, 동전 몇 개를 들고 문방구에서 반짝이는 카드를 사던 기억을 생각했습니다. <br>
 
@@ -28,6 +29,7 @@
 
 <img src="https://github.com/user-attachments/assets/c5efedb6-d6c7-4b85-a01c-2b0b1f4cb1b4" width="50%" height="50%">
 
+---
 ## 프로젝트 구조
 ```
 Project/
